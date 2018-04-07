@@ -21,7 +21,7 @@ Route::get('/', function () {
 	]); 
 });
 
-Route::post('/task', function () {
+Route::post('/task', function (Request $request) {
     $validator = Validator::make($request->all(), [
 		'name' => 'required|max:255',
 	]);
@@ -40,6 +40,7 @@ Route::post('/task', function () {
 
 });
 
-Route::delete('/task/{task}', function () {
-
+Route::delete('/task/{task}', function (Task $task) {
+	$task->delete();
+	return redirect('/');
 });
